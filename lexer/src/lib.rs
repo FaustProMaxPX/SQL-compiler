@@ -1,5 +1,5 @@
-mod token {
-    #[derive(Debug)]
+pub mod token {
+    #[derive(Debug, PartialEq)]
     pub enum Token {
         Select,
         Create,
@@ -99,7 +99,8 @@ pub mod lexer {
                         pos += 1;
                     }
                     let ident = &input[start..pos];
-                    match ident {
+                    
+                    match ident.to_uppercase().as_str() {
                         "SELECT" => token.push(Token::Select),
                         "DELETE" => token.push(Token::Delete),
                         "CREATE" => token.push(Token::Create),

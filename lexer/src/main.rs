@@ -12,3 +12,20 @@ fn main() {
     let v = parse(&arg);
     println!("{:#?}", v);
 }
+
+#[cfg(test)]
+mod lexer_test {
+
+    use sql_lexer::{lexer::*, token::Token};
+
+    #[test]
+    
+    fn case_insensitive_test() {
+        let v = parse("select");
+        match v {
+            Some(v) => assert_eq!(vec![Token::Select], v),
+            None => assert!(false)
+        }
+    }
+}
+
